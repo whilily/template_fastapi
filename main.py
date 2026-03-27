@@ -5,8 +5,8 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-@app.get("/")
-async def root(response_class=HTMLResponse):
+@app.get("/", response_class=HTMLResponse)
+async def root():
     return '''
     <!DOCTYPE html>
     
