@@ -1,26 +1,12 @@
 from typing import Optional
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
-from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+templates = Jinja2Templates(directory="./")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def root():
-    return '''
-    <!DOCTYPE html>
-    
-    <head>
-    <title>Hello World!</title>
-    </head>
-
-    <body>
-    <h2>Wonderful Website!</h2>
-    </body>
-    
-    </html>
-    '''
-
-#@app.get("/items/{item_id}")
-#def read_item(item_id: int, q: Optional[str] = None):
-#    return {"item_id": item_id, "q": q}
+async def root(request: Request):
+    return templates.TemplateResponse("index.html",{"request":request})
