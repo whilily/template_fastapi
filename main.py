@@ -1,12 +1,12 @@
 from typing import Optional
-
+from fastapi.responses import HTMLResponse
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
 @app.get("/")
-async def root():
+async def root(response_class=HTMLResponse):
     return '''
     <!DOCTYPE html>
     
@@ -21,6 +21,6 @@ async def root():
     </html>
     '''
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+#@app.get("/items/{item_id}")
+#def read_item(item_id: int, q: Optional[str] = None):
+#    return {"item_id": item_id, "q": q}
