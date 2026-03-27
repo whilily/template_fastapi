@@ -9,4 +9,4 @@ templates = Jinja2Templates(directory="./")
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
-    return templates.TemplateResponse("index.html",{"request":request, "launch_time":datetime.datetime.now()})
+    return templates.TemplateResponse("index.html",{"request":request, "launch_time":str(datetime.datetime.now())})
